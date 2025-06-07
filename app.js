@@ -1,4 +1,5 @@
 const canvas = document.querySelector('canvas');
+const instructions = document.getElementById('instructions');
 
 // not sure how to resize the bauble player so just forcing 1080p
 canvas.width = 1920;
@@ -28,5 +29,7 @@ document.addEventListener('keydown', (e) => {
 
     if (e.key === ' ') {
         bauble.togglePlay();
+        instructions.style.display = 'none';
+        canvas.style.display = 'block';
     }
 });

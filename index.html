@@ -21,12 +21,51 @@
             max-height: 100vh;
             width: auto;
             height: auto;
-            display: block;
+            display: none;
+            /* Hide canvas initially */
+        }
+
+        #instructions {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+        }
+
+        #instructions h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        #instructions p {
+            font-size: 1.2em;
+            margin: 0.5em 0;
+        }
+
+        #instructions .key {
+            background: #333;
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            margin: 0 0.2em;
         }
     </style>
 </head>
 
 <body>
+    <div id="instructions">
+        <h1>Controls</h1>
+        <p>Press <span class="key">Space</span> to start the animation</p>
+        <p>Press <span class="key">F</span> to toggle fullscreen</p>
+    </div>
     <canvas></canvas>
     <script src="bauble-player.iife.js"></script>
     <script src="app.js"></script>
