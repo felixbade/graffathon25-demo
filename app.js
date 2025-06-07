@@ -1,3 +1,14 @@
+const { core, studio } = Theatre
+
+studio.initialize();
+
+const project = core.getProject('HTML Animation Tutorial');
+const sheet = project.sheet('Sheet 1');
+const obj = sheet.object('Heading 1', {
+    y: 0,
+    opacity: core.types.number(1, { range: [0, 1] }),
+});
+
 const canvas = document.querySelector('canvas');
 const instructions = document.getElementById('instructions');
 
@@ -31,7 +42,15 @@ const bauble = new Bauble(canvas, {
     }
 });
 
+// Theatre to Bauble
+obj.onValuesChange((obj) => {
+    bauble.set({
+        z: obj.y
+    });
+});
 
+
+// Demo controls
 document.addEventListener('keydown', (e) => {
     if (e.key === 'f') {
         if (!document.fullscreenElement) {
@@ -48,14 +67,3 @@ document.addEventListener('keydown', (e) => {
         document.getElementById('music').play();
     }
 });
-
-const animate = () => {
-    const seconds = Date.now() / 1000;
-    const z = 20 + 10 * Math.sin(seconds * 2 * Math.PI);
-    bauble.set({
-        z: z
-    });
-    requestAnimationFrame(animate);
-}
-
-animate();
