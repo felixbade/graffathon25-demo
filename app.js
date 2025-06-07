@@ -17,7 +17,6 @@ const bauble = new Bauble(canvas, {
 });
 
 
-// Handle fullscreen toggle
 document.addEventListener('keydown', (e) => {
     if (e.key === 'f') {
         if (!document.fullscreenElement) {
@@ -25,5 +24,9 @@ document.addEventListener('keydown', (e) => {
         } else {
             document.exitFullscreen();
         }
+    }
+
+    if (e.key === ' ') {
+        bauble.togglePlay();
     }
 });
