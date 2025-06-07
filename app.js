@@ -2,7 +2,7 @@ const editorMode = true;
 
 const canvas = document.querySelector('canvas');
 const instructions = document.getElementById('instructions');
-
+const music = document.getElementById('music');
 
 if (editorMode) {
     instructions.style.display = 'none';
@@ -123,10 +123,20 @@ document.addEventListener('keydown', (e) => {
 
     if (e.key === ' ') {
         if (!editorMode) {
-            sheet.sequence.play()
+            sheet.sequence.play();
             instructions.style.display = 'none';
             canvas.style.display = 'block';
-            document.getElementById('music').play();
         }
+    }
+});
+
+Theatre.core.onChange(sheet.sequence.pointer, (pointer) => {
+    const { playing, position } = pointer;
+
+    if (playing && music.paused) {
+        music.currentTime = position;
+        music.play();
+    } else if (!playing && !music.paused) {
+        music.pause();
     }
 });
