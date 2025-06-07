@@ -1,15 +1,17 @@
-const { core } = Theatre
+const editorMode = true;
 
-// Theatre.studio.initialize();
+if (editorMode) {
+    Theatre.studio.initialize();
+}
 
-const project = core.getProject('HTML Animation Tutorial', {
+const project = Theatre.core.getProject('HTML Animation Tutorial', {
     state: projectState,
 });
 
 const sheet = project.sheet('Sheet 1');
 const obj = sheet.object('Heading 1', {
     y: 0,
-    opacity: core.types.number(1, { range: [0, 1] }),
+    opacity: Theatre.core.types.number(1, { range: [0, 1] }),
 });
 
 const canvas = document.querySelector('canvas');
@@ -64,9 +66,17 @@ document.addEventListener('keydown', (e) => {
     }
 
     if (e.key === ' ') {
-        sheet.sequence.play()
-        instructions.style.display = 'none';
-        canvas.style.display = 'block';
-        document.getElementById('music').play();
+        if (!editorMode) {
+            sheet.sequence.play()
+            instructions.style.display = 'none';
+            canvas.style.display = 'block';
+            document.getElementById('music').play();
+        }
     }
 });
+
+if (editorMode) {
+    instructions.style.display = 'none';
+    canvas.style.display = 'block';
+    document.body.style.cursor = 'default';
+}
