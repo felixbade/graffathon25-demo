@@ -21,7 +21,7 @@ const bauble = new Bauble(canvas, {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'f') {
         if (!document.fullscreenElement) {
-            canvas.requestFullscreen();
+            document.body.requestFullscreen();
         } else {
             document.exitFullscreen();
         }
