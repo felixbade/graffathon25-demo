@@ -31,5 +31,6 @@ document.addEventListener('keydown', (e) => {
         bauble.togglePlay();
         instructions.style.display = 'none';
         canvas.style.display = 'block';
+        document.getElementById('music').play();
     }
 });
