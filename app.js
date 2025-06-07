@@ -1,8 +1,11 @@
-const { core, studio } = Theatre
+const { core } = Theatre
 
-studio.initialize();
+// Theatre.studio.initialize();
 
-const project = core.getProject('HTML Animation Tutorial');
+const project = core.getProject('HTML Animation Tutorial', {
+    state: projectState,
+});
+
 const sheet = project.sheet('Sheet 1');
 const obj = sheet.object('Heading 1', {
     y: 0,
@@ -61,7 +64,7 @@ document.addEventListener('keydown', (e) => {
     }
 
     if (e.key === ' ') {
-        bauble.togglePlay();
+        sheet.sequence.play()
         instructions.style.display = 'none';
         canvas.style.display = 'block';
         document.getElementById('music').play();
